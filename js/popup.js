@@ -53,8 +53,8 @@ function addRowToHatedKeywordsTable(rowHtml){
 
 function buildTableRowWithKeyword(keyword){
 	var rowHtml = '<tr class="keyword-row" data-keyword="' + keyword + '">';
-	rowHtml += '<td>' + keyword + '<td>';
-	rowHtml += '<td><button data-keyword="' + keyword + '" class="delete-button">delete</button><td>';
+	rowHtml += '<td class="keyword-text-td">' + keyword + '</td>';
+	rowHtml += '<td><button data-keyword="' + keyword + '" class="delete-button">delete</button></td>';
 	rowHtml += '</tr>';
 	return rowHtml;
 }
@@ -63,6 +63,7 @@ function canThisKeywordBeHated(keyword){
 	if(keyword !== '' && keyword!==' ' && keyword.length >= MINIMUM_LENGTH_OF_KEYWORD_TO_HATE){
 		return true;
 	}
+	alert("Keyword cannot be blank and must have at least 3 characters.");
 	return false;
 }
 

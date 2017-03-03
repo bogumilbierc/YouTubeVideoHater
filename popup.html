@@ -9,10 +9,7 @@
     <title>HateThisSong</title>
     <style>
       #hated-keywords {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
+        overflow: auto;
 		width: 400px;
 		max-height: 400px;
 		min-height: 200px;
@@ -26,6 +23,12 @@
 		width: 400px;
 		height: 50px;
 	  }
+	  .keyword-row td{
+		border-bottom: solid 1px lightgray;
+	  }
+	  .keyword-text-td{
+		width: 80%;
+	  }
     </style>
 
     <!--
@@ -38,20 +41,16 @@
     <script src="js/popup.js"></script>
   </head>
   <body>
-	<h1>Hate this song</h1>
+	<h1>YouTubeVideoHater</h1>
+	<h2>Define new keyword for hating</h2>
 	<div id="hate-new">
 		<label>Keyword to hate</label>
 		<input id="keyword-to-hate" type="text" required>
 		<button id="hate-new-button">Hate it!</button>
 	</div>
+	<h2>Already hated keywords</h2>
     <div id="hated-keywords">
 		<table>
-			<thead>
-				<tr>
-					<th>Keyword</th>
-					<th></th>
-				</tr>
-			</thead>
 			<tbody id="hated-keywords-tbody">
 				
 			</tbody>
