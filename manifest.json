@@ -27,7 +27,6 @@
   "permissions": [
     "tabs",
 	"<all_urls>",
-	"alarms",
 	"webNavigation",
 	"storage"
   ]
