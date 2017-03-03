@@ -3,7 +3,7 @@ Chrome extension. Lets You defined videos You hate (by keywords) and they will b
 
 # Intro
 Lets imagine that You hate Justin Bieber. You hate is so much, that You cannot stand a video on YouTube that contains his voice.
-Up to now, You would need to go to YouTube tab in chrome and change vide, however this is no longer the case! This app will do it for You!
+Up to now, You would need to go to YouTube tab in chrome and change video, however this is no longer the case! This app will do it for You!
 
 # How it works
 - User is defining list of keywords.
