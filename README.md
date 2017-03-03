@@ -1,5 +1,5 @@
 # YouTubeVideoHater
-Chrome extension. Lets You defined videos You hate (by keywords) and they will be automatically skipped.
+Chrome extension. Lets You define videos You hate (by keywords) and then they will be automatically skipped.
 
 # Intro
 Lets imagine that You hate Justin Bieber. You hate is so much, that You cannot stand a video on YouTube that contains his voice.
