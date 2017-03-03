@@ -28,6 +28,7 @@
     "tabs",
 	"<all_urls>",
 	"alarms",
-	"webNavigation"
+	"webNavigation",
+	"storage"
   ]
 }

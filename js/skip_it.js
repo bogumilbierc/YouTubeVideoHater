@@ -3,34 +3,36 @@ chrome.runtime.onMessage.addListener(
     if (request.greeting == "HateThisVideo"){
 		waitTillPageLoadesAndSkipAnnoyingSongs();
 	}
-  });
+});
 
-waitTillPageLoadesAndSkipAnnoyingSongs();
-  
+init();
+
+var keywordsToSkip = [];
+
+function init(){
+	getKeywordsToHateAndProceedWithPageAnalysis();	
+}
+
+function getKeywordsToHateAndProceedWithPageAnalysis(){
+	chrome.storage.sync.get("hatedKeywords", function (obj) {
+		if(obj !== null && obj.hasOwnProperty('hatedKeywords')){
+			var hatedKeywordsJSON = obj['hatedKeywords'];
+			keywordsToSkip = JSON.parse(hatedKeywordsJSON);
+		}
+		waitTillPageLoadesAndSkipAnnoyingSongs();
+	});
+}
+ 
 function waitTillPageLoadesAndSkipAnnoyingSongs(){
 	window.setTimeout(skipAnnoyingSongs, 1000);	
 }
 
 function skipAnnoyingSongs(){	
-	console.log('executing');
-	var songTitle = $("#watch-headline-title h1.watch-title-container span.watch-title").text();
-	var title = songTitle.toLowerCase();
+	
+	var title = getVideoTitle();
+	var videoShouldBeSkipped = checkIfVideoShouldBeSkipped(title);
 
-	var keywordsToSkip = 
-	[
-		'bieber',
-		'meghan trainor'
-	];
-
-	var songShouldBeSkipped = false;
-
-	$(keywordsToSkip).each(function(i, item){
-		if(title.indexOf(item) !== -1){
-			songShouldBeSkipped = true;
-		}
-	});
-
-	if(songShouldBeSkipped){
+	if(videoShouldBeSkipped){
 		var nextButton = $(".ytp-chrome-controls .ytp-left-controls .ytp-next-button");
 		
 		if(nextButton != null && nextButton != undefined){
@@ -40,4 +42,27 @@ function skipAnnoyingSongs(){
 			waitTillPageLoadesAndSkipAnnoyingSongs();
 		}
 	}
+}
+
+/**
+Returns title of YouTube video. Title is in lowerCase.
+**/
+function getVideoTitle(){
+	var videoTitle = $("#watch-headline-title h1.watch-title-container span.watch-title").text();
+	return videoTitle.toLowerCase();
+}
+
+/**
+Checks whether Video of given title should be skipped.
+**/
+function checkIfVideoShouldBeSkipped(title){
+	var videoShouldBeSkipped = false;
+
+	$(keywordsToSkip).each(function(i, item){
+		if(title.indexOf(item) !== -1){
+			videoShouldBeSkipped = true;
+		}
+	});
+	
+	return videoShouldBeSkipped;
 }
