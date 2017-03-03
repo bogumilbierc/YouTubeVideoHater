@@ -9,6 +9,12 @@ $(document).ready(function(){
 		hateNewKeyword();
 	});
 	
+	$(KEYWORD_TO_HATE_INPUT).keyup(function(event){
+		if(event.keyCode == 13){
+			hateNewKeyword();
+		}
+	});
+	
 	chrome.storage.sync.get("hatedKeywords", function (obj) {
 		if(obj !== null && obj.hasOwnProperty('hatedKeywords')){
 			var hatedKeywordsJSON = obj['hatedKeywords'];
@@ -35,10 +41,12 @@ function fillHatedKeywordsTable(){
 function hateNewKeyword(){
 	var keywordToHate = $(KEYWORD_TO_HATE_INPUT).val();
 	if(canThisKeywordBeHated(keywordToHate)){
+		keywordToHate = keywordToHate.toLowerCase();
 		var newKeywordRowHtml = buildTableRowWithKeyword(keywordToHate);
 		addRowToHatedKeywordsTable(newKeywordRowHtml);
 		hatedKeywords.push(keywordToHate);
 		saveChanges();
+		$(KEYWORD_TO_HATE_INPUT).val('');
 	}
 
 }
@@ -69,10 +77,9 @@ function canThisKeywordBeHated(keyword){
 
 function deleteKeyword(keyword){
 	var indexOfKeywordToRemove = hatedKeywords.indexOf(keyword);
-	hatedKeywords = hatedKeywords.splice(indexOfKeywordToRemove, 1);
-	deleteTableRowWithKeyword(keyword);
+	hatedKeywords.splice(indexOfKeywordToRemove, 1);
 	saveChanges();
-	
+	fillHatedKeywordsTable();
 }
 
 function deleteTableRowWithKeyword(keyword){

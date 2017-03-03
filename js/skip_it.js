@@ -5,6 +5,10 @@ chrome.runtime.onMessage.addListener(
 	}
 });
 
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+        init();
+});
+
 init();
 
 var keywordsToSkip = [];
@@ -59,7 +63,7 @@ function checkIfVideoShouldBeSkipped(title){
 	var videoShouldBeSkipped = false;
 
 	$(keywordsToSkip).each(function(i, item){
-		if(title.indexOf(item) !== -1){
+		if(title.indexOf(item.toLowerCase()) !== -1){
 			videoShouldBeSkipped = true;
 		}
 	});
