@@ -8,6 +8,7 @@ Up to now, You would need to go to YouTube tab in chrome and change vide, howeve
 # How it works
 - User is defining list of keywords
 - Extension is checking if title of YouTube video that is played right now contains any of keywords. If yes, then video is switched to next (as You would press next button in YouTube player).
+- List of hated keywords is automatically synced between Your devices (if You are logged in Chrome)
 
 ## Installing this extension
 1. Download code from GitHub
