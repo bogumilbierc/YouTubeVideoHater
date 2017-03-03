@@ -8,17 +8,24 @@
   <head>
     <title>HateThisSong</title>
     <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      #status {
+      #hated-keywords {
         /* avoid an excessively wide status text */
         white-space: pre;
         text-overflow: ellipsis;
         overflow: hidden;
-        max-width: 400px;
+		width: 400px;
+		max-height: 400px;
+		min-height: 200px;
+		border: solid 1px lightgray;
       }
+	  #hated-keywords table {
+		width: 100%;
+		height: 100%;
+	  }
+	  #hate-new {
+		width: 400px;
+		height: 50px;
+	  }
     </style>
 
     <!--
@@ -27,12 +34,29 @@
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
+	<script src="jquery-3.1.1.min.js"></script>
     <script src="popup.js"></script>
   </head>
   <body>
 	<h1>Hate this song</h1>
-    <div id="status"></div>
-    <img id="image-result" hidden>
+	<div id="hate-new">
+		<label>Keyword to hate</label>
+		<input id="keyword-to-hate" type="text" required>
+		<button id="hate-new-button">Hate it!</button>
+	</div>
+    <div id="hated-keywords">
+		<table>
+			<thead>
+				<tr>
+					<th>Keyword</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="hated-keywords-tbody">
+				
+			</tbody>
+		</table>
+	</div>
   </body>
 </html>
 
