@@ -5,7 +5,7 @@
   "description": "Skips videos You hate",
   "version": "1.0",
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["js/background.js"],
     "persistence": false
   },
 
@@ -20,7 +20,7 @@
             "http://www.youtube.com/*",
             "https://www.youtube.com/*"
             ],
-      "js": ["jquery-3.1.1.min.js", "skip_it.js"],
+      "js": ["external/js/jquery-3.1.1.min.js", "js/skip_it.js"],
 	  "run_at": "document_idle" 
     }
   ],
